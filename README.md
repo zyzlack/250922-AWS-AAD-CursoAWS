@@ -1,3 +1,24 @@
+## Crear un stack de CloudFormation
+
+Para crear el stack en AWS usando CloudFormation, ejecuta el siguiente comando:
+
+```bash
+aws cloudformation create-stack \
+	--stack-name juan-macias-654654327431 \
+	--template-body file://infra.yml \
+	--capabilities CAPABILITY_IAM \
+	--region us-east-1 \
+	--profile default \
+	--output json \
+	--parameters \
+		ParameterKey=VpcId,ParameterValue=vpc-086fe118b4ed5c6e4 \
+		ParameterKey=SubnetId,ParameterValue=subnet-0f86fb485374f9f0a \
+		ParameterKey=InstanceType,ParameterValue=t3.micro \
+		ParameterKey=InstanceName,ParameterValue=nombre \
+		ParameterKey=SecurityGroupId,ParameterValue=sg-04f4c192bcfcf3f2b
+```
+
+Reemplaza los valores de los parámetros según tu configuración de AWS.
 
 # Requerimientos de Diseño para la Infraestructura AWS
 
