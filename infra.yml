@@ -4,8 +4,8 @@ Description: >
 
 Parameters:
   LatestAmiId:
-    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64'
+    Type: String
+    Default: 'ami-0227cf16615e396af' # ID AMI mas reciente
     Description: 'AMI más reciente de Amazon Linux 2023.'
   VpcId:
     Type: String
