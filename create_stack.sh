@@ -19,9 +19,9 @@ SUBNET1="subnet-0f86fb485374f9f0a"
 SUBNET2="subnet-0323a098b70caa778"
 TAG_NAME="Web Server - juan-macias"
 LATEST_AMI_ID="ami-039a65ec6bd28e541"
-MIN_SIZE="2"
+MIN_SIZE="0"
 MAX_SIZE="4"
-DESIRED_CAPACITY="2"
+DESIRED_CAPACITY="0"
 
 # Construir la cadena de parámetros para CloudFormation
 PARAMETERS=(
