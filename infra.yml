@@ -1,30 +1,30 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: >
+Description: |
   Infraestructura mínima en AWS para instancia EC2 en VPC por defecto, siguiendo requerimientos del README.md.
 
 Parameters:
   LatestAmiId:
     Type: String
-    Default: 'ami-0227cf16615e396af' # ID AMI mas reciente
-    Description: 'AMI más reciente de Amazon Linux 2023.'
+    Default: ami-0227cf16615e396af # ID AMI mas reciente
+    Description: AMI más reciente de Amazon Linux 2023.
   VpcId:
     Type: String
-    Default: 'vpc-086fe118b4ed5c6e4'
-    Description: 'ID de la VPC por defecto.'
+    Default: vpc-086fe118b4ed5c6e4
+    Description: ID de la VPC por defecto.
   SubnetId:
     Type: String
-    Description: 'ID de la subred pública en la VPC por defecto.'
+    Description: ID de la subred pública en la VPC por defecto.
   InstanceType:
     Type: String
-    Default: 't3.micro'
-    Description: 'Tipo de instancia EC2.'
+    Default: t3.micro
+    Description: Tipo de instancia EC2.
   InstanceName:
     Type: String
-    Default: 'juan-macias'
-    Description: 'Nombre de la instancia EC2.'
+    Default: juan-macias
+    Description: Nombre de la instancia EC2.
   SecurityGroupId:
     Type: String
-    Description: 'ID del grupo de seguridad por defecto de la VPC.'
+    Description: ID del grupo de seguridad por defecto de la VPC.
 
 Resources:
   # Rol IAM mínimo para EC2
@@ -38,7 +38,7 @@ Resources:
             Principal:
               Service: ec2.amazonaws.com
             Action: sts:AssumeRole
-      Path: '/'
+      Path: /
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore # Permiso mínimo para administración
 
@@ -47,7 +47,6 @@ Resources:
     Properties:
       Roles:
         - !Ref Ec2InstanceRole
-
 
   # Instancia EC2 en VPC por defecto
   Ec2JuanMacias:
@@ -68,8 +67,8 @@ Resources:
 
 Outputs:
   Ec2InstanceId:
-    Description: "ID de la instancia EC2 creada."
+    Description: ID de la instancia EC2 creada.
     Value: !Ref Ec2JuanMacias
   Ec2PublicIp:
-    Description: "IP pública de la instancia EC2."
+    Description: IP pública de la instancia EC2.
     Value: !GetAtt Ec2JuanMacias.PublicIp
