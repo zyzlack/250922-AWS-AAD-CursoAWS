@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables genéricas para parametrizar el stack
-STACK_NAME=${STACK_NAME:-juan-macias-654654327431}
+STACK_NAME=${STACK_NAME:-juan-macias-stack}
 REGION=${REGION:-us-east-1}
 PROFILE=${PROFILE:-default}
 
