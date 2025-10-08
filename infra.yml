@@ -20,18 +20,30 @@ Parameters:
     Description: Tipo de instancia EC2.
   InstanceName:
     Type: String
-    Default: gabriel-awshero
+    Default: juan-macias
     Description: Nombre de la instancia EC2.
   SecurityGroupId:
     Type: String
     Description: ID del grupo de seguridad por defecto de la VPC.
+  DesiredCapacity:
+    Type: String
+    Default: '1'
+    Description: Capacidad deseada del Auto Scaling Group.
+  MinSize:
+    Type: String
+    Default: '1'
+    Description: Tamaño mínimo del Auto Scaling Group.
+  MaxSize:
+    Type: String
+    Default: '1'
+    Description: Tamaño máximo del Auto Scaling Group.
   LaunchTemplateName:
     Type: String
-    Default: lt-gabriel
+    Default: lt-juan-macias
     Description: Nombre del Launch Template para EC2.
   AutoScalingGroupName:
     Type: String
-    Default: asg-gabriel
+    Default: asg-juan-macias
     Description: Nombre del Auto Scaling Group.
   Subnet1:
     Type: String
@@ -43,7 +55,7 @@ Parameters:
     Description: ID de la segunda subred pública.
   TagName:
     Type: String
-    Default: Web Server - Gabriel
+    Default: Web Server - juan-macias
     Description: Valor de la etiqueta Name para instancias EC2.
 
 Resources:
@@ -112,9 +124,9 @@ Resources:
       LaunchTemplate:
         LaunchTemplateId: !Ref Ec2LaunchTemplate
         Version: !GetAtt Ec2LaunchTemplate.LatestVersionNumber
-      MinSize: '1'
-      MaxSize: '1'
-      DesiredCapacity: '1'
+      MinSize: !Ref MinSize
+      MaxSize: !Ref MaxSize
+      DesiredCapacity: !Ref DesiredCapacity
       HealthCheckType: EC2
       HealthCheckGracePeriod: 300
       Tags:
