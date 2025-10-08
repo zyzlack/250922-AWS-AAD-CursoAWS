@@ -1,23 +1,44 @@
-## Crear un stack de CloudFormation
+## Scripts para gestionar la infraestructura con CloudFormation
 
-Para crear el stack en AWS usando CloudFormation, ejecuta el siguiente comando:
+Se incluyen scripts para crear y eliminar el stack de infraestructura en AWS de forma parametrizada y automática.
+
+### Crear o actualizar el stack
+
+Ejecuta el script `create_stack.sh` para crear el stack si no existe, o actualizarlo si ya existe:
 
 ```bash
-aws cloudformation create-stack \
-	--stack-name juan-macias-654654327431 \
-	--template-body file://infra.yml \
-	--capabilities CAPABILITY_IAM \
-	--region us-east-1 \
-	--profile default \
-	--output json \
-	--parameters \
-		ParameterKey=VpcId,ParameterValue=vpc-086fe118b4ed5c6e4 \
-		ParameterKey=SubnetId,ParameterValue=subnet-0f86fb485374f9f0a \
-		ParameterKey=InstanceType,ParameterValue=t3.micro \
-		ParameterKey=SecurityGroupId,ParameterValue=sg-04f4c192bcfcf3f2b
+./create_stack.sh
 ```
 
-Reemplaza los valores de los parámetros según tu configuración de AWS.
+Puedes personalizar los parámetros usando variables de entorno:
+
+```bash
+STACK_NAME=mi-stack REGION=us-west-2 INSTANCE_TYPE=t2.micro ./create_stack.sh
+```
+
+Variables disponibles:
+- STACK_NAME: Nombre del stack (por defecto: juan-macias-654654327431)
+- TEMPLATE_BODY: Archivo de infraestructura (por defecto: infra.yml)
+- REGION: Región de AWS (por defecto: us-east-1)
+- PROFILE: Perfil de AWS CLI (por defecto: default)
+- VPC_ID: ID de la VPC
+- SUBNET_ID: ID de la subred
+- INSTANCE_TYPE: Tipo de instancia EC2
+- SECURITY_GROUP_ID: ID del grupo de seguridad
+
+### Eliminar el stack
+
+Ejecuta el script `delete_stack.sh` para eliminar el stack:
+
+```bash
+./delete_stack.sh
+```
+
+Puedes personalizar el nombre del stack y la región:
+
+```bash
+STACK_NAME=mi-stack REGION=us-west-2 ./delete_stack.sh
+```
 
 # Requerimientos de Diseño para la Infraestructura AWS
 
