@@ -21,7 +21,7 @@ TAG_NAME="Web Server - juan-macias"
 LATEST_AMI_ID="ami-039a65ec6bd28e541"
 MIN_SIZE="2"
 MAX_SIZE="2"
-DESIRED_CAPACITY="0"
+DESIRED_CAPACITY="2"
 
 # Construir la cadena de parámetros para CloudFormation
 PARAMETERS=(
